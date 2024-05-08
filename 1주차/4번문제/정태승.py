@@ -1,41 +1,28 @@
 import sys
 
-N = int(sys.stdin.readline())
-points = []
+N, K = map(int, sys.stdin.readline().split())
 
-for _ in range(N):
-    x, y = map(int, sys.stdin.readline().split())
-    points.append((x,y))
+cargos = {}
+dp = {}
 
-res = 0
-def combi(st, curr):
-    if len(curr) == 3:
-        curr = list(map(lambda x : points[x], curr)) # 점 대응시켜주기.
-        a = (curr[0][0]-curr[1][0])**2 + (curr[0][1]-curr[1][1])**2
-        b = (curr[0][0]-curr[2][0])**2 + (curr[0][1]-curr[2][1])**2
-        c = (curr[1][0]-curr[2][0])**2 + (curr[1][1]-curr[2][1])**2# 길이
-        lens = [a,b,c] # 정렬
-        lens.sort()
-        if lens[2] == lens[0] + lens[1]: # 피타고라스
-            global res
-            res += 1
-        return
+for i in range(N):
+    W, V = map(int, sys.stdin.readline().split())
+    cargos[i] = (W, V)
+
+def go(k, level):
+    if level == N: # 짐 최대 개수 도달
+        return 0
     
-    for i in range(st+1, N):
-        if i in curr:
-            continue
-
-        curr.append(i)
-        combi(i, curr)
-        curr.pop()
+    if (k, level) in dp:
+        return dp[(k, level)]
     
-    return
+    dp[(k, level)] = -1
+    if k >= cargos[level][0]: # 현재 배낭 남은 무게가 충분할때
+        dp[(k, level)] = max(go(k-cargos[level][0], level+1)+cargos[level][1], dp[(k, level)]) # 넣기
+    
+    dp[(k, level)] = max(go(k, level+1), dp[(k, level)]) # 안 넣기
 
-combi(-1, [])
-print(res)
+    return dp[(k, level)]
 
-# 1. 점 3개 고르기
-# 2. 점 3개로 a^2 = b^2+c^2 구하기
-# N**3 풀이. 시간초과발생.
-# 이 문제는 너무 수학적인 문제라 넘어갈게요..
-# https://lighter.tistory.com/37
+
+print(go(K, 0))
