@@ -14,3 +14,4 @@ for i in range(1, n+1):
             dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight]+value)
 print(dp[n][k])
 
+#https://velog.io/@dmsgur7112/Knapsack%EB%B0%B0%EB%82%AD-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
