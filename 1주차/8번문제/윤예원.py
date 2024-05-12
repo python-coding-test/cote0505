@@ -1,10 +1,11 @@
+INF = 999999999
 import sys
 input = sys.stdin.readline
 n = int(input())
 rock = list(map(int, input().split()))
-dp = [0]*n
-min_val = float("inf")
-for i in range(n):
-    dp[i] = max((i)*(1+abs(rock[0]-rock[i])),(4-i)*(1+abs(rock[4]-rock[i])))
-    min_val = min(dp[i], min_val)
-print(min_val)
+dp = [0] + [INF]*(n-1)
+for i in range(1,n):
+    for j in range(0, i):
+        min_val = max((i-j)*(1+abs(rock[j]-rock[i])),dp[j])
+        dp[i] = min(dp[i], min_val)
+print(dp[-1])
