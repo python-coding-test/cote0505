@@ -11,6 +11,5 @@ def find_k(k):
     else:
         return "1" if find_k(k-length) == "0" else "0"
 
-
 k = int(input())
 print(find_k(k))
