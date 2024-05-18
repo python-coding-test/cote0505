@@ -21,7 +21,7 @@ def dijkstra(start):
          if d!= INF:
               count+=1
               max_distance = max(max_distance, d)
-    print(count-1, max_distance)
+    print(count, max_distance)
 
 for _ in range(t):
     n,d,c = map(int, input().split())
