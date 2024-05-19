@@ -2,7 +2,7 @@ import math, sys
 input = sys.stdin.readline
 a,b = map(int, input().split())
 
-def countnum(n): #소수가 아닌 것의 개수
+def countnum(n): #소수인 것의 개수
     if  n<= 1:
         return 0
     else:
@@ -12,6 +12,7 @@ def countnum(n): #소수가 아닌 것의 개수
             while i*j <= n:
                 arr_val.add(i*j)
                 j+=1
+        print(arr_val)
         return len(arr_val)
 
 

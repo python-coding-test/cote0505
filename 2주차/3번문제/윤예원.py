@@ -13,6 +13,7 @@ while True:
         arr.append(int(input()))
     local_max,global_max = arr[0], arr[0]
     for i in range(1,n):
+        # 이전의 최댓값 + 자기 자신 or 자기 자신중 최댓 값 구하기
         local_max = max(arr[i], local_max+arr[i])
         global_max = max(global_max, local_max)
     print(global_max)     
