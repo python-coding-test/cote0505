@@ -10,9 +10,10 @@ def find_num(n):
         for i in range(last_digit):
             new_num = num*10+i
             if new_num > 9876543210:
-                return new_num
+                return -1
             else:
                 queue.append(new_num)
+                print(new_num)
                 count+=1
                 if count == n:
                     return new_num
