@@ -25,7 +25,7 @@ def dfs(idx):
     for i in range(1, len(used)):
         # 숫자 i를 현재 위치와 현재위치 + i +1 에 배치할 수 있는지 확인
         if not used[i] and idx+i+1 < 2*n+1 and not arr[idx+i+1]:
-            # 숫자 i를 사용하여 각 위치에 배치하고 dfs를 계속 진행
+            # 숫자 i를 각 위치에 배치하고 dfs를 계속
             used[i] = 1
             arr[idx] = i
             arr[idx+i+1] = i
