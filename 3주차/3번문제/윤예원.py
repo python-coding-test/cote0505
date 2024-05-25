@@ -25,6 +25,6 @@ for y in range(m+1):
                 if check([x-1,y,x,y],a,b,c,d):
                     break
             else:
-                dp[y][x] += dp[y][y-1]
+                dp[y][x] += dp[y][x-1]
 
 print(dp[m][n])
