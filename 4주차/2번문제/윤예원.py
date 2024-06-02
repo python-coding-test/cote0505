@@ -18,6 +18,7 @@ def solution(edges):
             answer[0] = i
     def dfs(start):
         q = deque([start])
+        vis = {}
         while q:
             a = q.popleft()
             #막대모양 그래프인 경우
@@ -28,14 +29,16 @@ def solution(edges):
             elif len(adj[a]) >=2:
                 answer[3]+=1
                 return
-            for i in adj[a]:
+            for i in adj[a]: #q에 있는 노드
                 if len(adj[i])>=2:
                     answer[3]+=1
                     return
-            #도넛 모양 그래프의 경우
-            if len(adj[a]) == 1:
-                answer[1]+=1
-                return
+                if (a, i) in vis: #방문된 edge이면 pass
+                    continue
+                q.append(i) 
+                vis[(a,i)] = True
+        answer[1]+=1
+        return
                      
     for i in adj[answer[0]]:
         dfs(i)
