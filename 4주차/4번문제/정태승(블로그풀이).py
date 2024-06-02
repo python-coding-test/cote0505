@@ -28,3 +28,5 @@ def solution(coin, cards):
             break
         turn += 1
     return turn
+
+# https://tolerblanc.github.io/programmers/programmers-nplueone-cardgame/
