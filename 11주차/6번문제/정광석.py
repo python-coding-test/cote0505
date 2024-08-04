@@ -68,17 +68,7 @@ def solution(p):
     if iscorr(u):
         return  u + solution(v)
     
-    else:
-        answer = '('
-        answer += solution(v)
-        answer += ')'
-
-        for s in u[1:len(u)-1]:
-            if s == '(':
-                answer += ')'
-            else:
-                answer += '('
-            
+   
         
             
 
