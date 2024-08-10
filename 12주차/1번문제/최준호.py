@@ -1,6 +1,4 @@
 def solution(N, stages):
-    answer = []
-
     people = len(stages)
 
     challenge = [0] * (N+1)
