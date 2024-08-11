@@ -37,28 +37,40 @@ def rotate(array_2d):
 
 
 
-def check(x,y,m):
-
-    for i in range(m):
-        for j in range(m):
-            if 0<=x+i<m and 0<=y+j<m:
-                if lock[x+i][y+j] + key[i][j] != 1:
-                    return False
-                
-    return True
-
+import copy
 
 
 def solution(key, lock):
     answer = True
     n = len(lock)
     m = len(key)
+
+
+    def check(x,y,m):
+        temp_lock = copy.deepcopy(lock)
+        for i in range(m):
+            for j in range(m):
+                if 0<=x+i<n and 0<=y+j<n:
+                    #print(x+i, y+j)
+                    temp_lock[x+i][y+j] += key[i][j]
+        
+        for i in range(n):
+            for j in range(n):
+                if temp_lock[i][j] == 0 or temp_lock[i][j] >1:
+                    return False
+        #print(temp_lock)   
+        return True
+ 
     for _ in range(4):
         key = rotate(key)
+    
         for x in range(-m+1, n):
             for y in range(-m+1, n):
                 if check(x,y,m):
                     return True
+                
+
+   
     return False
     
 
