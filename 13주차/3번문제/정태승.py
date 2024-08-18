@@ -61,7 +61,7 @@ def solution(maze):
                 go(cur_red, (nxt_blue_x, nxt_blue_y), vis_red, vis_blue, turns+1)
                 vis_blue.pop()
                 
-        if cur_blue == dst_blue :
+        elif cur_blue == dst_blue :
             for d in nxt_moves2:
                 nxt_red_x = red_x + d[0]
                 nxt_red_y = red_y + d[1]
