@@ -1,7 +1,5 @@
-# 75.6/100 풀이입니다
-
 def solution(maze):
-    answer = 1010
+    answer = 10100
     
     st_red, st_blue = None, None
     dst_red, dst_blue = None, None
@@ -34,15 +32,16 @@ def solution(maze):
                 dst_blue = (i,j)
     
     
-    def go(cur_red, cur_blue, vis_blue, vis_red, turns):
+    def go(cur_red, cur_blue, vis_red, vis_blue, turns):
         if cur_red == dst_red and cur_blue == dst_blue:
             nonlocal answer
             answer = min(answer, turns)
             return
         
         red_x, red_y, blue_x, blue_y = cur_red[0], cur_red[1], cur_blue[0], cur_blue[1]
+        # print(cur_red, cur_blue)
         
-        if cur_red == dst_red :
+        if cur_red == dst_red and cur_blue != dst_blue:
             for d in nxt_moves2:
                 nxt_blue_x = blue_x + d[0]
                 nxt_blue_y = blue_y + d[1]
@@ -61,7 +60,7 @@ def solution(maze):
                 go(cur_red, (nxt_blue_x, nxt_blue_y), vis_red, vis_blue, turns+1)
                 vis_blue.pop()
                 
-        elif cur_blue == dst_blue :
+        elif cur_blue == dst_blue and cur_red != dst_red:
             for d in nxt_moves2:
                 nxt_red_x = red_x + d[0]
                 nxt_red_y = red_y + d[1]
@@ -107,10 +106,11 @@ def solution(maze):
                 go((nxt_red_x, nxt_red_y), (nxt_blue_x, nxt_blue_y), vis_red, vis_blue, turns+1)
                 vis_red.pop()
                 vis_blue.pop()
+                
         
         
         return
     
     go(st_red, st_blue, [st_red], [st_blue], 0)
     
-    return answer if answer!=1010 else 0
+    return answer if answer!=10100 else 0
