@@ -24,8 +24,6 @@ def solution(board):
         if board[0][2] == board[1][1] == board[2][0]:
             ox_win[board[1][1]] += 1
 
-    if ox_win['O'] > 1 or ox_win['X'] > 1:
-        return 0
     if ox_win['O'] and ox_win['X']:
         return 0
     if ox_win['O'] and ox_cnt['O'] <= ox_cnt['X']:
