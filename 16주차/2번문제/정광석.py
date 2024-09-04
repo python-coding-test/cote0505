@@ -1,4 +1,4 @@
-    def find_parent(parent,a):
+def find_parent(parent,a):
     temp_list = [0]
     while True:
         temp_list.append(a)
