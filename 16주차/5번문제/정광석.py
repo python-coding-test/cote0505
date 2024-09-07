@@ -53,7 +53,7 @@ def solution(N, road, K):
 
     dijkstra(1)
 
-    # K 이하로 배달 가능한 마을의 개수 계산
+    # K 이하로 배달
     answer = sum(1 for d in distance if d <= K)
     
     return answer
