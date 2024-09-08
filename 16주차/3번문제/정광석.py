@@ -36,6 +36,8 @@ def union(parent ,a, b):
 #입력
 n, m = map(int, input().split())
 board=[]
+answer = []
+
 parent = [i for i in range(n)]
 cntlist = [0 for _ in range(n)]
 
@@ -44,14 +46,32 @@ for _ in range(n):
 
 
 
-
+y_cnt = 0
 for i in range(n):
     for j in range(i+1,n):
         if board[i][j]=='Y':
-            union(parent, i, j)
+            y_cnt +=1
+            answer.append((i,j))
+            union(parent, i,j)
+
+root = find_parent(parent, 0)
+print(y_cnt)
+for i in range(1, n):
+    if find_parent(parent, i) != root or y_cnt < m:
+        print(-1)
+        exit()
+
+
+for i in range(m):
+    s,e = answer[i]
+    cntlist[s]+=1
+    cntlist[e]+=1
+
+print(cntlist)
+print("answer",answer)
+print("parent", parent)
 
 
 
-print(parent)
-print(board)
-
+for i in cntlist:
+    print(i, end=' ')
