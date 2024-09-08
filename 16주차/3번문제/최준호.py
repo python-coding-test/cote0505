@@ -21,13 +21,30 @@ def main():
 
     visitCheck = [0] * N
     res = [0] * N
-    while M:
-        a,b = road.popleft()
-        visitCheck[a] = 1
-        visitCheck[b] = 1
-        res[a] += 1
-        res[b] += 1
-        M -= 1
+    # print(road)
+    if len(road) > M:
+        while M:
+            a,b = road.popleft()
+
+            if visitCheck[a] and visitCheck[b]:
+                continue
+            if not road:
+                break
+            visitCheck[a] = 1
+            visitCheck[b] = 1
+            res[a] += 1
+            res[b] += 1
+            M -= 1
+    else:
+        while M:
+            a,b = road.popleft()
+            visitCheck[a] = 1
+            visitCheck[b] = 1
+            res[a] += 1
+            res[b] += 1
+            M -= 1
+    # print(visitCheck)
+    # print(visited)
     if(sum(visited)==sum(visitCheck)):
         print(*res)
     else:
